@@ -1,0 +1,635 @@
+{<link rel="stylesheet" type="text/css" href="Templates/Default_104/css/inplay.css?v=20210723203000" />
+<script type="text/javascript">
+    var serverIP = "156.239.152.13";
+    var serverPort = "4337";
+    var gameCod = "1032509";
+    var curGameCod = "1032509";
+</script>
+<!-- 棒球TV -->
+<script type="text/template" id="top_top_running_baseball_tpl">
+    <div class="Animate_baseball_bg">
+        <div class="Liveball_main waiting" date="{GameDateTime}">
+            <iframe id="live_tv" style="width:100%;" scrolling="no" src="/Plugins/SportsTV/SportsTV.html?code={Cod7m}&show=1" onload="resizeIframe()" height="480"></iframe>
+        </div>
+        <ul class="top_score" style="display:none;">
+            <li><span id="HomeScore_{Game_Cod}">-</span></li>
+            <li><span id="AwayScore_{Game_Cod}">-</span></li>
+        </ul>
+    </div>
+    <div class="Liveball_bot" val="up">
+        <div class="line"></div>
+        <img src="Templates/Default_104/images/upward.png" class="upword_btn" />
+    </div>
+</script>
+<script type="text/template" id="running_baseball_notv_tpl">
+    <div class="LiveBall">
+        <div class="Liveball_main2">
+            <img src="Templates/Default_104/images/baseball_bg.png" class="live_bg" />
+            <div class="Score_baseball">
+                <ul class="baseball_top">
+                    <li><span class="Num">0</span>아웃</li>
+                    <li>1루</li>
+                    <li>2루</li>
+                    <li>3루</li>
+                    <div class="clear"></div>
+                </ul>
+                <table border="0" cellspacing="0" cellpadding="0" class="Baseball_list">
+                    <tr>
+                        <th width=""></th>
+                        <th width="">1회</th>
+                        <th width="">2회</th>
+                        <th width="">3회</th>
+                        <th width="">4회</th>
+                        <th width="">5회</th>
+                        <th width="">6회</th>
+                        <th width="">7회</th>
+                        <th width="">8회</th>
+                        <th width="">9회</th>
+                        <th width="">연장</th>
+                        <th width="">득점</th>
+                    </tr>
+                    <tr>
+                        <td id="HomeBaseTeam_{Game_Cod}" style="position:relative;">홈<span class="serve" style="display:none"></span></td>
+                        <td id="HomeBaseSet1_{Game_Cod}">--</td>
+                        <td id="HomeBaseSet2_{Game_Cod}">--</td>
+                        <td id="HomeBaseSet3_{Game_Cod}">--</td>
+                        <td id="HomeBaseSet4_{Game_Cod}">--</td>
+                        <td id="HomeBaseSet5_{Game_Cod}">--</td>
+                        <td id="HomeBaseSet6_{Game_Cod}">--</td>
+                        <td id="HomeBaseSet7_{Game_Cod}">--</td>
+                        <td id="HomeBaseSet8_{Game_Cod}">--</td>
+                        <td id="HomeBaseSet9_{Game_Cod}">--</td>
+                        <td id="HomeBaseAdd_{Game_Cod}">---</td>
+                        <td id="HomeBaseSum_{Game_Cod}">---</td>
+                    </tr>
+                    <tr>
+                        <td id="AwayBaseTeam_{Game_Cod}" style="position:relative;">원정<span class="serve" style="display:none"></span></td>
+                        <td id="AwayBaseSet1_{Game_Cod}">--</td>
+                        <td id="AwayBaseSet2_{Game_Cod}">--</td>
+                        <td id="AwayBaseSet3_{Game_Cod}">--</td>
+                        <td id="AwayBaseSet4_{Game_Cod}">--</td>
+                        <td id="AwayBaseSet5_{Game_Cod}">--</td>
+                        <td id="AwayBaseSet6_{Game_Cod}">--</td>
+                        <td id="AwayBaseSet7_{Game_Cod}">--</td>
+                        <td id="AwayBaseSet8_{Game_Cod}">--</td>
+                        <td id="AwayBaseSet9_{Game_Cod}">--</td>
+                        <td id="AwayBaseAdd_{Game_Cod}">---</td>
+                        <td id="AwayBaseSum_{Game_Cod}">---</td>
+                    </tr>
+                </table>
+                <ul class="Name">
+                    <li><span>홈팀</span></li>
+                    <li style="float:right;"><span>원정팀</span></li>
+                    <li><span>{HomeNam}</span></li>
+                    <li id="span_gametime_{Game_Cod}" class="time">-</li>
+                    <li><span>{AwayNam}</span></li>
+                </ul>
+                <ul class="top_score" style="display:none;">
+                    <li><span id="HomeScore_{Game_Cod}">-</span></li>
+                    <li><span id="AwayScore_{Game_Cod}">-</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Liveball_bot" val="up">
+            <div class="line"></div>
+            <img src="Templates/Default_104/images/upward.png" class="upword_btn" />
+        </div>
+    </div>
+</script>
+<script type="text/template" id="top_waiting_baseball_tpl">
+    <div class="Liveball_main2 waiting" date="{GameDateTime}">
+        <img src="Templates/Default_104/images/baseball_bg.png" class="live_bg" />
+        <div class="Score_nostart">
+            <h2>경기시작 남은시간</h2>
+            <ul class="top_score">
+                <li><span id="day_{Game_Cod}">-</span>DAYS</li>
+                <li><span id="hour_{Game_Cod}">-</span>HRS</li>
+                <li><span id="minute_{Game_Cod}">-</span>MINS</li>
+                <li><span id="second_{Game_Cod}">-</span>SECS</li>
+            </ul>
+            <ul class="Name">
+                <li><span>홈팀</span></li>
+                <li><span>원정팀</span></li>
+                <li><span>{HomeNam}</span></li>
+                <li><span>{AwayNam}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="Liveball_bot" val="up">
+        <div class="line"></div>
+        <img src="Templates/Default_104/images/upward.png" class="upword_btn" />
+    </div>
+</script>
+<div class="Container_center float_l">
+    <!-- 即时分数 -->
+    <div id="div_inplaydetail_top" class="LiveBall">
+
+
+
+
+    </div>
+    <ul class="livepage_tab" style="display:none;">
+        <li class="selected">Popular</li>
+        <li>Popular</li>
+        <li>Popular</li>
+        <li>Popular</li>
+        <div class="clear"></div>
+    </ul>
+    <!-- 内容区域 -->
+    <input type="button" value="Live 베팅내역" class="livebetting_btn float_r LiveBet_click">
+    <div id="live_content" class="livepage_list">
+        <div class="FullCourt">
+            <div class="list_tit"><b>풀타임 경기</b></div>
+            <div class="list_con" id="div_top_1032509">
+                <div id = "noOneHas" style="line-height: 56px;text-align: center;font-size: 12px;color: #000;display: none;">베팅이 잠겼습니다. 잠시만 기다려주십시오.</div>
+                <div class="Odds_title" id="div_sfp_line_1032509">
+                    <span class="line"></span><span class="tit_text">승무패</span><span class="line"></span>
+                </div>
+                <div class="Odds_title" id="div_sf_line_1032509">
+                    <span class="line"></span><span class="tit_text">승/패</span><span class="line"></span>
+                </div>
+                <div id="div_sfp_1032509">
+                    <ul class="Odds suspend">
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                <div class="Odds_title" id="div_rq_line_1032509">
+                    <span class="line"></span><span class="tit_text">핸디캡</span><span class="line"></span>
+                </div>
+                <div id="div_rq_1032509">
+                    <ul class="Odds suspend">
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                <div class="Odds_title" id="div_dx_line_1032509">
+                    <span class="line"></span><span class="tit_text">오버언더</span><span class="line"></span>
+                </div>
+                <div id="div_dx_1032509">
+                    <ul class="Odds suspend">
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                <div class="Odds_title" id="div_oe_line_1032509">
+                    <span class="line"></span><span class="tit_text">홀/짝</span><span class="line"></span>
+                </div>
+                <div id="div_oe_1032509">
+                    <ul class="Odds suspend">
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <li><img src="Templates/Default_104/images/suspend.png"></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="div_half_1032509" class="FirstHalf" style="display:none;">
+            <div class="list_tit"><b>전반전 경기</b></div>
+            <div class="list_con" id="div_top1_1032509">
+                <div class="Odds_title" id="div_sfp1_line_1032509">
+                    <span class="line"></span><span class="tit_text">승무패</span><span class="line"></span>
+                </div>
+                <div class="Odds_title" id="div_sf1_line_1032509">
+                    <span class="line"></span><span class="tit_text">승/패</span><span class="line"></span>
+                </div>
+                <div id="div_sfp1_1032509">
+                </div>
+                <div class="Odds_title" id="div_rq1_line_1032509">
+                    <span class="line"></span><span class="tit_text">핸디캡</span><span class="line"></span>
+                </div>
+                <div id="div_rq1_1032509">
+                </div>
+                <div class="Odds_title" id="div_dx1_line_1032509">
+                    <span class="line"></span><span class="tit_text">오버언더</span><span class="line"></span>
+                </div>
+                <div id="div_dx1_1032509">
+                </div>
+                <div class="Odds_title" id="div_oe1_line_1032509">
+                    <span class="line"></span><span class="tit_text">홀/짝</span><span class="line"></span>
+                </div>
+                <div id="div_oe1_1032509">
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div id="div_livebetting" class="livebetting_all" style="display: none;">
+    <div id="close_btn" class="livebet_closebtn"><img src="Templates/Default_104/images/livebet_closebtn.png" width="25"></div>
+    <div class="Mybettinginplay_con">
+        <div class="Bettinginplay_tab">
+            <ul class="livebetting_tab float_l">
+                <li id="live_li_tab_1"
+                    onclick="$('#live_li_tab_0').removeClass('selected'); $('#live_li_tab_1').addClass('selected'); $('#div_btn').show(); $('.going_Tab').hide(); MyPageGo2(1, '1','1');">
+                    정산완료<span class="Sel_arrow"></span></li>
+                <li id="live_li_tab_0"
+                    onclick="$('#live_li_tab_1').removeClass('selected'); $('#live_li_tab_0').addClass('selected'); $('#div_btn').hide(); $('.going_Tab').show(); $('#live_ing_tab_1').removeClass('selected'); $('#live_ing_tab_3').removeClass('selected'); $('#live_ing_tab_0').addClass('selected'); MyPageGo2(1, '0', '0');">
+                    진행중<span class="Sel_arrow"></span></li>
+                <div class="clear"></div>
+            </ul>
+            <div class="going_Tab going_Tab_b float_r">
+                <ul>
+                    <li id="live_ing_tab_0" class="selected"
+                        onclick="$('#live_ing_tab_1').removeClass('selected'); $('#live_ing_tab_3').removeClass('selected'); $('#live_ing_tab_0').addClass('selected'); $('#div_btn').hide(); MyPageGo2(1, '0', '0');">
+                        승인대기
+                        <span class="Refresh">
+                            <img src="Templates/Default_104/images/daishuaxin.png" class="Refresh_img" />
+                            <span class="Countdown"><em id="em_count">20</em>초 </span>
+                        </span>
+                    </li>
+                    <li id="live_ing_tab_1"
+                        onclick="$('#live_ing_tab_0').removeClass('selected'); $('#live_ing_tab_3').removeClass('selected'); $('#live_ing_tab_1').addClass('selected'); $('#div_btn').hide(); MyPageGo2(1, '0', '1');">
+                        승인완료</li>
+                    <li id="live_ing_tab_3"
+                        onclick="$('#live_ing_tab_1').removeClass('selected'); $('#live_ing_tab_0').removeClass('selected'); $('#live_ing_tab_3').addClass('selected'); $('#div_btn').hide(); MyPageGo2(1, '0', '3');">
+                        승인취소</li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="BetInplay_bg">
+            <div class="BetInplay_main">
+
+                <div id="livebet_list" class="betting_main">
+                </div>
+            </div>
+            <div id="pagelayer" class="Pages flickr1"></div>
+            <div id="div_btn" class="Delete_Btn float_r">
+                <input type="button" id="Select_delete" class="Select_delete float_l" value="선택삭제"
+                    onclick="DeleteBetting_InPlay('0');">
+                <input type="button" id="Delete_all" class="Delete_all float_r" value="전체삭제"
+                    onclick="DeleteBetting_InPlay('1');">
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/template" id="cart_info_tmp">
+    <input type="hidden" id="viplevel" value="" />
+<div class="Cart_all" id="Cart_all">
+    <div class="Cart_title">
+        <img src="Templates/Default_104/images/cart_titlebg.png" /><b style="color:#db4839;">Live베팅카트 </b>
+    </div>
+    <div id="div_cartItem"></div>
+    <ul class="Shop_all">
+        <li class="shop1">
+            <label>베팅금액</label>
+            <span class="inp1"><input name="BettingMoney" id="BettingMoney" type="tel" value="" maxlength="9" onfocus="BettingFocus();" onblur="BettingOut();" onkeyup="MoneyConvert(this);"><img src="Templates/Default_104/images/close_num.png" class="Close_num" style="display:none;" onclick="clearBettingMoney();"></span>
+            <a onclick="MaxGo();" class="max_btn">MAX</a>
+            <div class="clear"></div>
+        </li>
+        <li class="btngroup_livecart">
+            <input type="button" value="+오천" onclick="SetCustomBetting(5000);" />
+            <input type="button" value="+일만" onclick="SetCustomBetting(10000);" />
+            <input type="button" value="+오만" onclick="SetCustomBetting(50000);" />
+            <input type="button" value="+십만" onclick="SetCustomBetting(100000);" />
+            <div class="clear"></div>
+        </li>
+        <li>
+            <span class="float_l">이익금</span>
+            <span class="float_r"><b id="OddMoney" style="color: #e74c3c;">0</b> 원</span>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <span class="float_l">예상적중</span>
+            <span class="float_r"><span id="span_formula">-</span></span>
+            <div class="clear"></div>
+        </li>
+        <li class="switch_all" style="display: none;">
+            <div class="switch float_r">
+                <div class="btn_fath clearfix off" onclick="toogle(this)">
+                    <div class="move" data-state="off"></div>
+                    <div class="btnSwitch btn1">닫기</div>
+                    <div class="btnSwitch btn2 ">열기</div>
+                </div>
+            </div>
+            <span class="float_r switch_left">슈퍼벳 x 1회</span>
+            <div class="clear"></div>
+        </li>
+        <li class="Cart_btn_live">
+            <button id="btn_betting_go" class="btn" onclick="BettingGo();">베팅하기</button>
+        </li>
+    </ul>
+</div>
+<div id="div_inplay_left_title" class="SportSimple_title" style="display:none;">
+    <span class="Vline"></span>
+    <b>전체</b>
+</div>
+<div id="div_inplaylist" style="display:none;"></div>
+<input type="hidden" name="bMoney" id="bMoney" value="0">
+<input type="hidden" name="GameCod" id="GameCod" value="0">
+<input type="hidden" name="GameTypeCod" id="GameTypeCod" value="0">
+<input type="hidden" name="OddsId" id="OddsId" value="0">
+<input type="hidden" name="ResultCod" id="ResultCod" value="0">
+<input type="hidden" name="TotCnt" id="TotCnt" value="0">
+<input type="hidden" name="TotCntTemp" id="TotCntTemp" value="0">
+<input type="hidden" name="BetMin" id="BetMin" value="5000">
+<input type="hidden" name="BetMax" id="BetMax" value="200000">
+<input type="hidden" name="GetMax" id="GetMax" value="1000000">
+<input type="hidden" name="TotalBetMax" id="TotalBetMax" value="100000000">
+<input type="hidden" name="TotalGetMax" id="TotalGetMax" value="100000000">
+<input type="hidden" name="BetMin1" id="BetMin1" value="5000">
+<input type="hidden" name="BetMax1" id="BetMax1" value="200000">
+<input type="hidden" name="GetMax1" id="GetMax1" value="1000000">
+<input type="hidden" name="TotalBetMax1" id="TotalBetMax1" value="100000000">
+<input type="hidden" name="TotalGetMax1" id="TotalGetMax1" value="100000000">
+<input type="hidden" name="BetMin2" id="BetMin2" value="5000">
+<input type="hidden" name="BetMax2" id="BetMax2" value="200000">
+<input type="hidden" name="GetMax2" id="GetMax2" value="1000000">
+<input type="hidden" name="TotalBetMax2" id="TotalBetMax2" value="100000000">
+<input type="hidden" name="TotalGetMax2" id="TotalGetMax2" value="100000000">
+<input type="hidden" name="BetMin3" id="BetMin3" value="5000">
+<input type="hidden" name="BetMax3" id="BetMax3" value="200000">
+<input type="hidden" name="GetMax3" id="GetMax3" value="1000000">
+<input type="hidden" name="TotalBetMax3" id="TotalBetMax3" value="100000000">
+<input type="hidden" name="TotalGetMax3" id="TotalGetMax3" value="100000000">
+</script>
+<script type="text/javascript">
+    var cartHtml = $("#cart_info_tmp").html();
+    $("#div_cart").html(cartHtml);
+</script>
+<script type="text/template" id="top_running_nocode_tpl">
+    <div class="Liveball_main2">
+        <img src="Templates/Default_104/images/football_bg.png" class="live_bg" />
+        <div class="Score_con">
+            <ul class="top_score">
+                <li><span id="HomeScore_{Game_Cod}">-</span></li>
+                <li id="span_gametime_{Game_Cod}" class="time">waiting...</li>
+                <li><span id="AwayScore_{Game_Cod}">-</span></li>
+            </ul>
+            <ul class="Name">
+                <li><span>홈팀</span></li>
+                <li><span>원정팀</span></li>
+                <li><span>{HomeNam}</span></li>
+                <li><span>{AwayNam}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="Liveball_bot" val="up">
+        <div class="line"></div>
+        <img src="Templates/Default_104/images/upward.png" class="upword_btn" />
+    </div>
+</script>
+<script type="text/template" id="top_running_basketball_nocode_tpl">
+    <div class="LiveBall">
+        <div class="Liveball_main2">
+            <img src="Templates/Default_104/images/basketball_bg.png" class="live_bg" />
+            <div class="Score_basket">
+                <table border="0" cellspacing="0" cellpadding="0" class="Basket_list">
+                    <tr>
+                        <th width="10%"></th>
+                        <th width="15%">1Q</th>
+                        <th width="15%">2Q</th>
+                        <th width="15%">전반</th>
+                        <th width="15%">3Q</th>
+                        <th width="15%">4Q</th>
+                        <th width="15%">연장/합</th>
+                    </tr>
+                    <tr>
+                        <td>홈</td>
+                        <td id="HomeSet1_{Game_Cod}">--</td>
+                        <td id="HomeSet2_{Game_Cod}">--</td>
+                        <td id="HomeSetSum_{Game_Cod}">--</td>
+                        <td id="HomeSet3_{Game_Cod}">--</td>
+                        <td id="HomeSet4_{Game_Cod}">--</td>
+                        <td id="HomeSum_{Game_Cod}">---</td>
+                    </tr>
+                    <tr>
+                        <td>원정</td>
+                        <td id="AwaySet1_{Game_Cod}">--</td>
+                        <td id="AwaySet2_{Game_Cod}">--</td>
+                        <td id="AwaySetSum_{Game_Cod}">--</td>
+                        <td id="AwaySet3_{Game_Cod}">--</td>
+                        <td id="AwaySet4_{Game_Cod}">--</td>
+                        <td id="AwaySum_{Game_Cod}">---</td>
+                    </tr>
+                </table>
+                <ul class="Name">
+                    <li><span>홈팀</span></li>
+                    <li style="float:right;"><span>원정팀</span></li>
+                    <li><span>{HomeNam}</span></li>
+                    <li id="span_gametime_{Game_Cod}" class="time">-</li>
+                    <li><span>{AwayNam}</span></li>
+                </ul>
+                <ul class="top_score" style="display:none;">
+                    <li><span id="HomeScore_{Game_Cod}">-</span></li>
+                    <li><span id="AwayScore_{Game_Cod}">-</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="Liveball_bot" val="up">
+        <div class="line"></div>
+        <img src="Templates/Default_104/images/upward.png" class="upword_btn" />
+    </div>
+</script>
+<script type="text/template" id="top_running_tpl">
+    <div class="Animate_bg">
+        <div class="Liveball_main waiting" date="{GameDateTime}">
+            <iframe id="live_tv" style="width:100%;" scrolling="no" src="/Plugins/SportsTV/SportsTV.html?code={Cod7m}&show=1" onload="resizeIframe()" height="480"></iframe>
+        </div>
+        <ul class="top_score" style="display:none;">
+            <li><span id="HomeScore_{Game_Cod}">-</span></li>
+            <li><span id="AwayScore_{Game_Cod}">-</span></li>
+        </ul>
+    </div> 
+    <div class="Liveball_bot" val="up">
+        <div class="line"></div>
+        <img src="Templates/Default_104/images/upward.png" class="upword_btn" />
+    </div>
+</script>
+<script type="text/template" id="top_running_basketball_tpl">
+    <div class="Animate_basketball_bg">
+        <div class="Liveball_main waiting" date="{GameDateTime}">
+            <iframe id="live_tv" style="width:100%;" scrolling="no" src="/Plugins/SportsTV/SportsTV.html?code={Cod7m}&show=1" onload="resizeIframe()" height="480"></iframe>
+        </div>
+        <ul class="top_score" style="display:none;">
+            <li><span id="HomeScore_{Game_Cod}">-</span></li>
+            <li><span id="AwayScore_{Game_Cod}">-</span></li>
+        </ul>
+    </div>
+    <div class="Liveball_bot" val="up">
+        <div class="line"></div>
+        <img src="Templates/Default_104/images/upward.png" class="upword_btn" />
+    </div>
+</script>
+<script type="text/template" id="top_waiting_tpl">
+    <div class="Liveball_main2 waiting" date="{GameDateTime}">
+        <img src="Templates/Default_104/images/football_bg.png" class="live_bg" />
+        <div class="Score_nostart">
+            <h2>경기시작 남은시간</h2>
+            <ul class="top_score">
+                <li><span id="day_{Game_Cod}">-</span>DAYS</li>
+                <li><span id="hour_{Game_Cod}">-</span>HRS</li>
+                <li><span id="minute_{Game_Cod}">-</span>MINS</li>
+                <li><span id="second_{Game_Cod}">-</span>SECS</li>
+            </ul>
+            <ul class="Name">
+                <li><span>홈팀</span></li>
+                <li><span>원정팀</span></li>
+                <li><span>{HomeNam}</span></li>
+                <li><span>{AwayNam}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="Liveball_bot" val="up">
+        <div class="line"></div>
+        <img src="Templates/Default_104/images/upward.png" class="upword_btn" />
+    </div>
+</script>
+<script type="text/template" id="top_waiting_basketball_tpl">
+    <div class="Liveball_main2 waiting" date="{GameDateTime}">
+        <img src="Templates/Default_104/images/basketball_bg.png" class="live_bg" />
+        <div class="Score_nostart">
+            <h2>경기시작 남은시간</h2>
+            <ul class="top_score">
+                <li><span id="day_{Game_Cod}">-</span>DAYS</li>
+                <li><span id="hour_{Game_Cod}">-</span>HRS</li>
+                <li><span id="minute_{Game_Cod}">-</span>MINS</li>
+                <li><span id="second_{Game_Cod}">-</span>SECS</li>
+            </ul>
+            <ul class="Name">
+                <li><span>홈팀</span></li>
+                <li><span>원정팀</span></li>
+                <li><span>{HomeNam}</span></li>
+                <li><span>{AwayNam}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="Liveball_bot" val="up">
+        <div class="line"></div>
+        <img src="Templates/Default_104/images/upward.png" class="upword_btn" />
+    </div>
+</script>
+<script type="text/template" id="lock_template">
+    <ul class="Odds suspend" id="ul_odditem_{Game_Cod}_{OddsID}">
+        <li><img src="Templates/Default_104/images/suspend.png" /></li>
+        <li><img src="Templates/Default_104/images/suspend.png" /></li>
+        <li><img src="Templates/Default_104/images/suspend.png" /></li>
+        <div class="clear"></div>
+    </ul>
+</script>
+<script type="text/template" id="lock_template1">
+        <li><img src="Templates/Default_104/images/suspend.png" /></li>
+        <li><img src="Templates/Default_104/images/suspend.png" /></li>
+        <li><img src="Templates/Default_104/images/suspend.png" /></li>
+        <div class="clear"></div>
+</script>
+<script type="text/template" id="wdd_template">
+    <ul class="Odds" id="ul_odditem_{Game_Cod}_{OddsID}" oddtype="{OddType}" oddflg="{Game_Cod}_{OddsID}">
+        <li id="td_{Game_Cod}_{OddsID}_1" onclick="CartUp(1, '{OddsID}', {Game_Cod}, {HalfType});" oddsval="{Odds1}" oddsval1="{Odds1}"><b><span class="size_i">승</span><br><span id="span_{Game_Cod}_{OddsID}_1" class="font_i">{Odds1_1}</span></b><span class="arrow"></span></li>
+        <li id="td_{Game_Cod}_{OddsID}_2" onclick="CartUp(2,'{OddsID}',{Game_Cod}, {HalfType});" oddsval="{Odds2}" oddsval1="{Odds2}"><b><span class="size_i">무</span><br><span id="span_{Game_Cod}_{OddsID}_2" class="font_i">{Odds2}</span></b><span class="arrow"></span></li>
+        <li id="td_{Game_Cod}_{OddsID}_3" onclick="CartUp(3,'{OddsID}',{Game_Cod}, {HalfType});" oddsval="{Odds3}" oddsval1="{Odds3}"><b><span class="size_i">패</span><br><span id="span_{Game_Cod}_{OddsID}_3" class="font_i">{Odds3_1}</span></b><span class="arrow"></span></li>
+        <div class="clear"></div>
+    </ul>
+</script>
+<script type="text/template" id="oe_basketball_template">
+    <ul class="Odds" id="ul_odditem_{Game_Cod}_{OddsID}" oddtype="{OddType}" oddflg="{Game_Cod}_{OddsID}">
+        <li id="td_{Game_Cod}_{OddsID}_1" onclick="CartUp(10, '{OddsID}', {Game_Cod}, {HalfType});" oddsval="{Odds1}" oddsval1="{Odds1}"><b><span class="size_i">홀</span><br><span id="span_{Game_Cod}_{OddsID}_1" class="font_i">{Odds1_1}</span></b><span class="arrow"></span></li>
+        <li class="vs"><b>VS</b></li>
+        <li id="td_{Game_Cod}_{OddsID}_3" onclick="CartUp(12,'{OddsID}',{Game_Cod}, {HalfType});" oddsval="{Odds3}" oddsval1="{Odds3}"><b><span class="size_i">짝</span><br><span id="span_{Game_Cod}_{OddsID}_3" class="font_i">{Odds3_1}</span></b><span class="arrow"></span></li>
+        <div class="clear"></div>
+    </ul>
+</script>
+<script type="text/template" id="wdd_basketball_template">
+    <ul class="Odds" id="ul_odditem_{Game_Cod}_{OddsID}" oddtype="{OddType}" oddflg="{Game_Cod}_{OddsID}">
+        <li id="td_{Game_Cod}_{OddsID}_1" onclick="CartUp(1, '{OddsID}', {Game_Cod}, {HalfType});" oddsval="{Odds1}" oddsval1="{Odds1}"><b><span class="size_i">승</span><br><span id="span_{Game_Cod}_{OddsID}_1" class="font_i">{Odds1_1}</span></b><span class="arrow"></span></li>
+        <li class="vs"><b>VS</b></li>
+        <li id="td_{Game_Cod}_{OddsID}_3" onclick="CartUp(3,'{OddsID}',{Game_Cod}, {HalfType});" oddsval="{Odds3}" oddsval1="{Odds3}"><b><span class="size_i">패</span><br><span id="span_{Game_Cod}_{OddsID}_3" class="font_i">{Odds3_1}</span></b><span class="arrow"></span></li>
+        <div class="clear"></div>
+    </ul>
+</script>
+<script type="text/template" id="letball_template">
+    <ul class="Odds" id="ul_odditem_{Game_Cod}_{OddsID}" oddtype="{OddType}" oddflg="{Game_Cod}_{OddsID}">
+        <li id="td_{Game_Cod}_{OddsID}_1" onclick="CartUp(4,'{OddsID}',{Game_Cod}, {HalfType});" oddsval="{Odds1}" oddsval1="{Odds1}"><b><span class="size_i">핸디 승</span><br><span id="span_{Game_Cod}_{OddsID}_1" class="font_i">{Odds1_1}</span></b><span class="arrow"></span></li>
+        <li id="td_{Game_Cod}_{OddsID}_2" oddsval="{Odds2}" oddsval1="{Odds2_2}"><b><span class="size_i">기준점</span><br><span id="span_{Game_Cod}_{OddsID}_2" class="font_i">{Odds2}</span></b><span class="arrow"></span></li>
+        <li id="td_{Game_Cod}_{OddsID}_3" onclick="CartUp(6,'{OddsID}',{Game_Cod}, {HalfType});" oddsval="{Odds3}" oddsval1="{Odds3}"><b><span class="size_i">핸디 패</span><br><span id="span_{Game_Cod}_{OddsID}_3" class="font_i">{Odds3_1}</span></b><span class="arrow"></span></li>
+        <div class="clear"></div>
+    </ul>
+</script>
+<script type="text/template" id="bs_template">
+    <ul class="Odds" id="ul_odditem_{Game_Cod}_{OddsID}" oddtype="{OddType}" oddflg="{Game_Cod}_{OddsID}">
+        <li id="td_{Game_Cod}_{OddsID}_1" onclick="CartUp(7,'{OddsID}',{Game_Cod}, {HalfType});" oddsval="{Odds1}" oddsval1="{Odds1}"><b><span class="size_i">오버</span><br><span id="span_{Game_Cod}_{OddsID}_1" class="font_i">{Odds1_1}</span></b><span class="arrow"></span></li>
+        <li id="td_{Game_Cod}_{OddsID}_2" oddsval="{Odds2}" oddsval1="{Odds2_2}"><b><span class="size_i">기준점</span><br><span id="span_{Game_Cod}_{OddsID}_2" class="font_i">{Odds2}</span></b><span class="arrow"></span></li>
+        <li id="td_{Game_Cod}_{OddsID}_3" onclick="CartUp(9,'{OddsID}',{Game_Cod}, {HalfType});" oddsval="{Odds3}" oddsval1="{Odds3}"><b><span class="size_i">언더</span><br><span id="span_{Game_Cod}_{OddsID}_3" class="font_i">{Odds3_1}</span></b><span class="arrow"></span></li>
+        <div class="clear"></div>
+    </ul>
+</script>
+<script type="text/template" id="league_template">
+    <ul class="LiveSimple_list" id="live_{LeagueCod}">
+        <li class="LeagueName"><b>{leagueName}</b></li>
+        {GameListItem}
+    </ul>
+</script>
+<script type="text/template" id="game_template">
+    <li class="Eventmain_S {selected}" val="runing" code="{Game_Cod}" onclick="GoToPageUrl('inplaydetail', {CateCod}, 'gameCod={Game_Cod}');" style="cursor:pointer;">
+        <div class="teamname float_l">
+            <span class="tname">{HomeNam}</span>
+            <span class="tname">{AwayNam}</span>
+        </div>
+        <div class="start_con float_r">
+            <b class="score float_r" id="Score_{Game_Cod}">-</b><br><b id="span_gametime1_{Game_Cod}" class="countdown">{GameDateTime1}</b>
+        </div>
+        <div class="clear"></div>
+    </li>
+</script>
+<script type="text/template" id="game_nostart_template">
+    <li class="Eventmain_S {selected} waiting" code="{Game_Cod}" val="waiting" date="{GameDateTime}" onclick="GoToPageUrl('inplaydetail', {CateCod}, 'gameCod={Game_Cod}');" style="cursor:pointer;">
+        <div class="teamname float_l">
+            <span class="tname">{HomeNam}</span>
+            <span class="tname">{AwayNam}</span>
+        </div>
+        <div class="Unstart_con float_r">
+            <span class="size_i">경기시작 남은시간</span><br><b id="countdown_{Game_Cod}" class="countdown">-:-:-</b>
+        </div>
+        <div class="clear"></div>
+    </li>
+</script>
+<script type="text/template" id="left_menu_list">
+    <div class="SportSimple_title">
+        <span class="Vline"></span>
+        <b>전체</b>
+    </div>
+    {InplayContent}
+</script>
+<script type="text/javascript">
+    $(".LiveBet_click").click(function () {
+        $("#div_livebetting").fadeIn();
+        $(".mask_black").css("display", "block");
+        $("#live_li_tab_0").click();
+    });
+
+    $("#close_btn").click(function () {
+        $("#div_livebetting").hide();
+        $(".mask_black").css("display", "none");
+        try {
+            $('body').stopTime("Refresh_CountDown");
+        } catch (e) { }
+    });
+    var timecount = 0
+    function resizeIframe() {
+        var iframe = document.getElementById('live_tv');
+        var body = iframe.contentWindow.document.body;
+        var ght = $(body).find("#lmts-wrapper").height();
+        if (ght < 50 && timecount < 30)
+            setTimeout("resizeIframe()", 1000)
+        else
+            $("#live_tv").attr("height", ght);
+        timecount++
+    }
+
+</script>
+<script type="text/javascript" src="Templates/Default_104/js/socket.js"></script>
+<script type="text/javascript" src="Templates/Default_104/js/InPlayDetail.js?v=20211626929133"></script>
+<script type="text/javascript" src="Templates/Default_104/js/Cart_InPlay.js?v=20211626929133"></script>}
